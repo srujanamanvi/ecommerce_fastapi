@@ -1,0 +1,12 @@
+.env
+zania_fast_env/
+.idea/
+*.docker
+alembic.ini
+app/ecommerce.db
+test.db
+.DS_Store
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
