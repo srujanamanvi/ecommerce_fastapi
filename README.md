@@ -1,4 +1,4 @@
-***Restful APIs for a simple e-commerce platform built with FastAPI.***
+**Restful APIs for a simple e-commerce platform built with FastAPI.**
 
 
 **Features**
@@ -71,11 +71,16 @@ cd ecommerce-api
 
 **Running Tests:**
 
-  **In Docker**
+- In Docker:
+
   ```docker-compose run api pytest```
   
-  **Locally**
-  ```pytest```
+- Locally
+```
+     pytest tests/test_orders.py
+     pytest tests/test_products.py
+```
+
 ---
 **API Examples**
 
@@ -92,7 +97,7 @@ cd ecommerce-api
 }'
 ```
 
-Placing an Order
+**Placing an Order**
 ```
 curl -X 'POST' \
   'http://localhost:8000/orders/' \

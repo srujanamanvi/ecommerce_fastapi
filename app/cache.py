@@ -27,5 +27,4 @@ class Cache:
             self.cache.clear()
 
 
-# Create cache instances with different TTLs
 order_cache = Cache(ttl_seconds=300)

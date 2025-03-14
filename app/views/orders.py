@@ -114,12 +114,13 @@ def format_order_response(order: Order) -> schemas.Order:
         ]
     )
 
+
 def get_orders(db: Session = Depends(get_db)) -> List[schemas.Order]:
     """
     Get all orders with their products.
     """
     # Try to get from cache first
-    cache_key = "orders_list" # can we user specific based on the need
+    cache_key = "orders_list" # It can be user specific based on the need
     cached_orders = order_cache.get(cache_key)
 
     if cached_orders:
@@ -134,19 +135,7 @@ def get_orders(db: Session = Depends(get_db)) -> List[schemas.Order]:
 
     # Convert to response schema
     result = [
-        schemas.Order(
-            id=order.id,
-            total_price=order.total_price,
-            status=order.status,
-            products=[
-                schemas.OrderProductItem(
-                    product_id=op.product_id,
-                    quantity=op.quantity
-                )
-                for op in order.order_products
-            ]
-        )
-        for order in orders
+        format_order_response(order) for order in orders
     ]
 
     order_cache.set(cache_key, result)
@@ -174,17 +163,6 @@ def get_order(order_id: int, db: Session = Depends(get_db)) -> schemas.Order:
         raise exception.OrderNotFoundError(order_id)
 
     # Convert to response schema
-    result = schemas.Order(
-        id=order.id,
-        total_price=order.total_price,
-        status=order.status,
-        products=[
-            schemas.OrderProductItem(
-                product_id=op.product_id,
-                quantity=op.quantity
-            )
-            for op in order.order_products
-        ]
-    )
+    result = format_order_response(order)
     order_cache.set(cache_key, result)
     return result
