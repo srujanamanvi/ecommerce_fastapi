@@ -36,14 +36,22 @@
 
 1. Clone the repository:
 ```
-git clone https://github.com/yourusername/ecommerce-api.git
+git clone https://github.com/srujanamanvi/ecommerce_fastapi.git
 cd ecommerce-api
 ```
+2. Add a .env file with the below environment variables on the machine where the code is run
+```
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_DB
+DATABASE_URL
 
-2. Build and start the Docker container:
+```
+
+3. Build and start the Docker container:
 ```docker-compose up --build```
 
-3. The API will be available at http://localhost:8000
+4. The API will be available at http://localhost:8000
 - API documentation: http://localhost:8000/docs
 - Alternative documentation: http://localhost:8000/redoc
 
@@ -66,6 +74,14 @@ cd ecommerce-api
 ```
   alembic upgrade head
   uvicorn app.main:app --reload
+```
+5. (Optional - not required if using testing with sqllite) Add a .env file with the below environment variables
+```
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_DB
+DATABASE_URL
+
 ```
 
 
